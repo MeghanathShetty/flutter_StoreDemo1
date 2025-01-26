@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_demo1/pages/homepage.dart';
 import 'package:store_demo1/pages/userprofile.dart';
-
 import '../pages/checkoutpage.dart';
 
 class MyConstants {

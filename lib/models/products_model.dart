@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:get/get.dart';
 
 part 'products_model.g.dart';
 

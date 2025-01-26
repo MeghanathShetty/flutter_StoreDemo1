@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:store_demo1/models/products_model.dart';
 import 'package:store_demo1/utils/my_apis.dart';
-
 import '../models/user_model.dart';
 import 'my_constants.dart';
 
@@ -62,7 +61,7 @@ class HomepageCategoryController extends GetxController {
                 response.data.map((item) => ProductsModel.fromJson(item)));
 
             productController.products.removeWhere((product) {
-              print("responseProduct ${product.id}");
+              // print("responseProduct ${product.id}");
               return responseData
                   .any((responseProduct) => responseProduct.id == product.id);
             });

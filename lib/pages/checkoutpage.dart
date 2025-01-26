@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_demo1/pages/homepage.dart';
 import 'package:store_demo1/utils/my_widgets.dart';
 import 'package:get/get.dart';
 import '../utils/my_controllers.dart';
@@ -45,7 +44,7 @@ class CheckoutPage extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 0),
                     child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CheckoutListSection(),

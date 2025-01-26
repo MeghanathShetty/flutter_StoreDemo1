@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../utils/my_apis.dart';
 import '../utils/my_constants.dart';
 
@@ -13,8 +12,7 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Expanded(
-          child: Align(
+      body: Align(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +80,6 @@ class UserProfile extends StatelessWidget {
               );
             })
           ],
-        ),
       )),
     );
   }

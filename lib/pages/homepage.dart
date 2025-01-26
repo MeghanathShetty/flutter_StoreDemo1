@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-//custom
 import 'package:store_demo1/utils/my_constants.dart';
 import 'package:store_demo1/utils/my_widgets.dart';
 
@@ -12,11 +9,11 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: MyConstants.foregroundColor,
         body: Padding(
         padding: EdgeInsets.only(left: 20, right: 20, top : 20, bottom: 0),
         child: Column(children : [
-          SizedBox(height: 20),
+          // SizedBox(height: 20),
           HomepageUserSection(),
           SizedBox(height: 20),
           HomepageSearchBar(),

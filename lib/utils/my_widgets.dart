@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:store_demo1/models/products_model.dart';
 import 'package:store_demo1/pages/detailspage.dart';
-import 'package:store_demo1/pages/homepage.dart';
 import 'package:store_demo1/utils/my_controllers.dart';
 import 'my_apis.dart';
 import 'package:get/get.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 
 import 'my_constants.dart';
 
@@ -254,7 +251,12 @@ class MyRatingSection extends StatelessWidget {
 class MyFavIcon extends StatelessWidget {
   var item;
   double width, height, heartSize;
-  MyFavIcon({super.key, required this.item, this.width = 27.0, this.height = 27.0, this.heartSize = 18});
+  MyFavIcon(
+      {super.key,
+      required this.item,
+      this.width = 27.0,
+      this.height = 27.0,
+      this.heartSize = 18});
 
   FavoritesController favoritesController = Get.put(FavoritesController());
   @override
@@ -511,7 +513,7 @@ class ChooseColorSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    double selectedItemSize = screenWidth>600? 12 : 12;
+    double selectedItemSize = screenWidth > 600 ? 12 : 12;
     colorController.setItems(items);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -695,125 +697,123 @@ class ShippingInfoSection extends StatelessWidget {
     shippingPageController.calculateTotal(); // Warning
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Shipping information',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            // Total items and its price
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Total (${cartController.checkoutsObs.length} items)',
-                  style: TextStyle(color: MyConstants.secondaryColor),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Shipping information',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          // Total items and its price
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Total (${cartController.checkoutsObs.length} items)',
+                style: TextStyle(color: MyConstants.secondaryColor),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Obx(() => Text(
+                    '\$${shippingPageController.total.value}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          // Shipping Fee
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Shipping Fee',
+                style: TextStyle(color: MyConstants.secondaryColor),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                '\$23.0',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          // Discount
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Discount',
+                style: TextStyle(color: MyConstants.secondaryColor),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                '\$40.0',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          // Sub Total
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: MyConstants.borderColor,
+                  width: 1.0,
                 ),
-                SizedBox(
-                  width: 5,
-                ),
-                Obx(() => Text(
-                      '\$${shippingPageController.total.value}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
-              ],
+              ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            // Shipping Fee
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Shipping Fee',
-                  style: TextStyle(color: MyConstants.secondaryColor),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  '\$23.0',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            // Discount
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Discount',
-                  style: TextStyle(color: MyConstants.secondaryColor),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  '\$40.0',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            // Sub Total
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: MyConstants.borderColor,
-                    width: 1.0,
+            child: Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Sub Total',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Sub Total',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Obx(() => Text(
-                          '\$${shippingPageController.subTotal.value}',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ))
-                  ],
-                ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Obx(() => Text(
+                        '\$${shippingPageController.subTotal.value}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ))
+                ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            // Pay button
-            Center(
-                child: MyButton(
-                    onPressed: () {
-                      cartController.clearCheckoutItems();
-                      chooseQuantityController.qtys.clear();
-                    },
-                    text: "Pay"))
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          // Pay button
+          Center(
+              child: MyButton(
+                  onPressed: () {
+                    cartController.clearCheckoutItems();
+                    chooseQuantityController.qtys.clear();
+                  },
+                  text: "Pay"))
+        ],
       ),
     );
   }

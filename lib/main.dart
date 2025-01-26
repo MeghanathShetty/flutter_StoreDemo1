@@ -3,7 +3,6 @@ import 'package:store_demo1/pages/checkoutpage.dart';
 import 'package:store_demo1/pages/favoritespage.dart';
 import 'package:store_demo1/pages/homepage.dart';
 import 'package:store_demo1/pages/userprofile.dart';
-import 'package:store_demo1/utils/my_constants.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store_demo1/utils/my_controllers.dart';
