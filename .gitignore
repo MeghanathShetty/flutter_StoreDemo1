@@ -32,10 +32,14 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 
-# But include build/web
-!build/web
-# Ignore all build directories
-build/
+build/app
+build/flutter_assets
+build/47e2594781b74fdf0cb6c94565c88409
+build/native_assets
+build/path_provider_android
+build/cache.dill.track.dill
+build/f872507f30e2ff2523f0f1d19160266e.cache.dill.track.dill
+build/last_build_run.json
 
 # Symbolication related
 app.*.symbols
