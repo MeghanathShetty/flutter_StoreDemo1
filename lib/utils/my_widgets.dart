@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:store_demo1/pages/detailspage.dart';
+import 'package:store_demo1/pages/userprofile.dart';
 import 'package:store_demo1/utils/my_controllers.dart';
 import 'my_apis.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class HomepageUserSection extends StatelessWidget {
   HomepageUserSection({super.key});
 
   final UserDioController userDioController = Get.put(UserDioController());
+  BottomNavigationController bottomNavigationController = Get.put(BottomNavigationController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +46,23 @@ class HomepageUserSection extends StatelessWidget {
           ),
 
           // User Image
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle, // Make the container circular
-              ),
-              child: ClipOval(
-                child: Image.network(
-                  user.picture.thumbnail,
-                  fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              bottomNavigationController.setIndex(3);
+            },
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle, // Make the container circular
+                ),
+                child: ClipOval(
+                  child: Image.network(
+                    user.picture.thumbnail,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -955,100 +962,103 @@ class MyMasonryGridView extends StatelessWidget {
   FavoritesController favoritesController = Get.put(FavoritesController());
   @override
   Widget build(BuildContext context) {
-    return MasonryGridView.builder(
-      gridDelegate: SliverSimpleGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 300, // Max width for each item
-      ),
-      mainAxisSpacing: 15,
-      crossAxisSpacing: 15,
-      padding: EdgeInsets.only(bottom: 100),
-      itemCount: isHomePage
-          ? (searchController.query.value.isEmpty
-              ? productController.products.length
-              : searchedItems.length)
-          : favoritesController.allFavoritesItems.length,
-      itemBuilder: (context, index) {
-        var item = isHomePage
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false), // Disable scrollbars
+      child: MasonryGridView.builder(
+        gridDelegate: SliverSimpleGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 300, // Max width for each item
+        ),
+        mainAxisSpacing: 15,
+        crossAxisSpacing: 15,
+        padding: EdgeInsets.only(bottom: 100),
+        itemCount: isHomePage
             ? (searchController.query.value.isEmpty
-                ? productController.products[index]
-                : searchedItems[index])
-            : favoritesController.allFavoritesItems[index];
+                ? productController.products.length
+                : searchedItems.length)
+            : favoritesController.allFavoritesItems.length,
+        itemBuilder: (context, index) {
+          var item = isHomePage
+              ? (searchController.query.value.isEmpty
+                  ? productController.products[index]
+                  : searchedItems[index])
+              : favoritesController.allFavoritesItems[index];
 
-        return GestureDetector(
-          onTap: () => Get.to(() => DetailsPage(
-                item: item,
-              )),
-          child: Container(
-            // margin: EdgeInsets.all(screenWidth > 600 ? 10.0 : 5.0),
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              // color: MyConstants.borderColor,
-              borderRadius: BorderRadius.circular(MyConstants.borderRad),
-              border: Border.all(
-                color: MyConstants.borderColor,
-                width: 1,
+          return GestureDetector(
+            onTap: () => Get.to(() => DetailsPage(
+                  item: item,
+                )),
+            child: Container(
+              // margin: EdgeInsets.all(screenWidth > 600 ? 10.0 : 5.0),
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                // color: MyConstants.borderColor,
+                borderRadius: BorderRadius.circular(MyConstants.borderRad),
+                border: Border.all(
+                  color: MyConstants.borderColor,
+                  width: 1,
+                ),
               ),
-            ),
-            child: Stack(children: [
-              // Main data
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Image
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      item.image,
-                      fit: BoxFit.cover, // Ensure image scales properly
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Name Text
-                  Text(
-                    item.title,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Category Text
-                  Text(
-                    item.category,
-                    style: TextStyle(
-                      color: MyConstants.secondaryColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Price and Rating
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Price
-                      Text(
-                        '\$${item.price.toString()}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+              child: Stack(children: [
+                // Main data
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Image
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        item.image,
+                        fit: BoxFit.cover, // Ensure image scales properly
                       ),
-                      // Rating Icon and Rating
-                      MyRatingSection(item: item)
-                    ],
-                  )
-                ],
-              ),
-              // Fav Icon Container
-              Positioned(
-                  top: 4,
-                  right: 2,
-                  child: MyFavIcon(
-                    item: item,
-                  ))
-            ]),
-          ),
-        );
-      },
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Name Text
+                    Text(
+                      item.title,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Category Text
+                    Text(
+                      item.category,
+                      style: TextStyle(
+                        color: MyConstants.secondaryColor,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Price and Rating
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Price
+                        Text(
+                          '\$${item.price.toString()}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        // Rating Icon and Rating
+                        MyRatingSection(item: item)
+                      ],
+                    )
+                  ],
+                ),
+                // Fav Icon Container
+                Positioned(
+                    top: 4,
+                    right: 2,
+                    child: MyFavIcon(
+                      item: item,
+                    ))
+              ]),
+            ),
+          );
+        },
+      ),
     );
   }
 }

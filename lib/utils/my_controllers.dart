@@ -102,7 +102,7 @@ class ChooseQuantityController extends GetxController {
 
   void addQty(Map<String, dynamic> item, {bool isDetailPage = false}) {
     int itemId = item['id'];
-    print("duuuuuuuuuuuuu = ${qty.value}");
+    // print("duuuuuuuuuuuuu = ${qty.value}");
     if (isDetailPage && !qtys.containsKey(itemId)) {
       if (qty.value < 10) {
         qty.value++;

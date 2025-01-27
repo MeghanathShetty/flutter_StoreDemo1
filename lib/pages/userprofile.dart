@@ -27,7 +27,7 @@ class UserProfile extends StatelessWidget {
               final user = data.results[0];
               // main bordered container
               return Container(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(40.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(MyConstants.borderRad),
                   border: Border.all(color: MyConstants.borderColor, width: 1),
@@ -35,8 +35,8 @@ class UserProfile extends StatelessWidget {
                 child: Column(children: [
                   // Image Container
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 120,
+                    height: 120,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle, // Make the container circular
                     ),
@@ -52,28 +52,28 @@ class UserProfile extends StatelessWidget {
                   Text(
                     '${user.name.title} '
                     '${user.name.first} ${user.name.last}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   // Phone, Email, Address
-                  SizedBox(height: 10,),
+                  SizedBox(height: 30,),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Phone :', style: TextStyle(color: MyConstants.secondaryColor),),
+                        Text('Phone :', style: TextStyle(color: MyConstants.secondaryColor, fontSize: 15),),
                         SizedBox(height: 4,),
-                        Text('${user.phone} '),
+                        Text(user.phone, style: TextStyle(fontSize: 15)),
                         SizedBox(height: 10,),
-                        Text('Email :', style: TextStyle(color: MyConstants.secondaryColor),),
+                        Text('Email :', style: TextStyle(color: MyConstants.secondaryColor, fontSize: 15),),
                         SizedBox(height: 4,),
-                        Text('${user.email} '),
+                        Text(user.email, style: TextStyle(fontSize: 15),),
                         SizedBox(height: 10,),
                         // address
-                        Text('Address :', style: TextStyle(color: MyConstants.secondaryColor),),
+                        Text('Address :', style: TextStyle(color: MyConstants.secondaryColor, fontSize: 15),),
                         SizedBox(height: 4,),
                         Text('${user.location.city}'
                             ' ${user.location.state}'
-                            ' ${user.location.country}'),
+                            ' ${user.location.country}', style: TextStyle(fontSize: 15)),
                       ],
                     ),
                 ]),
