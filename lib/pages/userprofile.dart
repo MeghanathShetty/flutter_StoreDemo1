@@ -12,6 +12,7 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: MyConstants.foregroundColor,
       body: Align(
         alignment: Alignment.center,
         child: Column(

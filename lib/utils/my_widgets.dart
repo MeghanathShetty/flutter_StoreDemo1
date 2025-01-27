@@ -461,38 +461,42 @@ class ChooseSizeSection extends StatelessWidget {
         Row(
             spacing: 10,
             children: sizeController.items.map((item) {
-              return Obx(() => GestureDetector(
-                    onTap: () {
-                      sizeController
-                          .toggleCheck(sizeController.items.indexOf(item));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(1.5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: MyConstants.primaryColor,
-                          width: 1,
+              return Obx(() => Center(
+                child: GestureDetector(
+                      onTap: () {
+                        sizeController
+                            .toggleCheck(sizeController.items.indexOf(item));
+                      },
+                      child: Center(
+                        child: Container(
+                          padding: EdgeInsets.all(1.5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: MyConstants.primaryColor,
+                              width: 1,
+                            ),
+                            color: item['isChecked'].value
+                                ? MyConstants.primaryColor
+                                : MyConstants.foregroundColor,
+                          ),
+                          child: CircleAvatar(
+                              radius: 10,
+                              backgroundColor: item['isChecked'].value
+                                  ? MyConstants.primaryColor
+                                  : MyConstants.foregroundColor,
+                              child: Text(
+                                item['text'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: item['isChecked'].value
+                                        ? MyConstants.foregroundColor
+                                        : MyConstants.primaryColor),
+                              )),
                         ),
-                        color: item['isChecked'].value
-                            ? MyConstants.primaryColor
-                            : MyConstants.foregroundColor,
                       ),
-                      child: CircleAvatar(
-                          radius: 10,
-                          backgroundColor: item['isChecked'].value
-                              ? MyConstants.primaryColor
-                              : MyConstants.foregroundColor,
-                          child: Text(
-                            item['text'],
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: item['isChecked'].value
-                                    ? MyConstants.foregroundColor
-                                    : MyConstants.primaryColor),
-                          )),
                     ),
-                  ));
+              ));
             }).toList()),
       ],
     );
