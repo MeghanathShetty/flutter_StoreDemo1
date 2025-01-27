@@ -291,10 +291,7 @@ class MyBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 4,
-      left: 4,
-      child: GestureDetector(
+    return  GestureDetector(
         onTap: onPressed,
         child: Container(
           decoration: BoxDecoration(
@@ -318,7 +315,6 @@ class MyBackButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }
